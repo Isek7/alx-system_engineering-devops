@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# prints the content of the current directory with a twist
+
+for i in *
+do
+	echo "${i#*-}"
+done

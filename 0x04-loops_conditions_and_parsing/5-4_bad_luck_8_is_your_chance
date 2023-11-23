@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script prints "Best School" 10 times using while loop
+
+name="Best School"
+i=0
+
+while [ "$i" -lt 10 ]
+do
+	if [ "$i" -eq 3 ]
+	then
+		echo "bad luck"
+		(( i++ ))
+
+	elif [ "$i" -eq 7 ]
+	then
+		echo "good luck"
+		(( i++ ))
+	else
+		echo "$name"
+		(( i++ ))
+	fi
+done

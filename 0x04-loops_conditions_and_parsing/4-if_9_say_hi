@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script prints "Best School" 10 times using while loop
+
+name="Best School"
+i=0
+
+while [ "$i" -lt 11 ]
+do
+	if [ "$i" -eq 9 ]
+	then
+		echo "Hi"
+		(( i++ ))
+		continue
+	fi
+	echo "$name"
+	(( i++ ))
+done
