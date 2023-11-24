@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Bash script that manage_my_process deaemon/creates a subprocess
+# script that manages the manage_my_process script
 
 case "$1" in
 start)
