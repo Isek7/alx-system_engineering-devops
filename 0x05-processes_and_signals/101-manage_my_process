@@ -1,34 +1,27 @@
 #!/usr/bin/env bash
-#Bash script that creates a subprocess
-. /lib/lsb/init-functions
+#Bash script that manage_my_process deaemon/creates a subprocess
 
-PIDFILE=/var/run/my_process.pid
 
-start() {
-    ./manage_my_process &
-    echo "$!" > "$PIDFILE"
-}
+case "$1" in
 
-stop() {
-    sudo kill -15 "$(cat "$PIDFILE")" && rm -f "$PIDFILE"
-}
-
-case "$1" in 
-    start)
-       start
-       echo "manage_my_process started"
-       ;;
-    stop)
-       stop
-       echo "manage_my_process stopped"
-       ;;
-    restart)
-       stop
-       start
-       echo "manage_my_process restarted"
-       ;;
-    *)
-       echo "Usage: manage_my_process {start|stop|restart}"
+	start)
+		./manage_my_process &
+		echo $$ > /var/run/my_process.pid
+		echo "manage_my_process started"
+		;;
+	stop)
+		kill "$(pgrep -f /manage_my_process)"
+		rm /var/run/my_process.pid
+		echo "manage_my_process stopped"
+		;;
+	restart)
+		kill "$( pgrep -f /manage_my_process)"
+		rm /var/run/my_process.pid
+		./manage_my_process &
+		echo $$ > /var/run/my_process.pid
+		echo "manage_my_process restarted"
+		;;
+	*)
+		echo "Usage: manage_my_process {start|stop|restart}"
+		;;
 esac
-
-exit 0
