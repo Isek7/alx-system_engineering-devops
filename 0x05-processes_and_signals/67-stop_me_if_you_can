@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#Bash script that kills a process/7-highlander instead of 4-to_infinity_and_bynd
+pkill -f ./7-highlander
