@@ -6,11 +6,11 @@ PROCESS_NAME="manage_my_process"
 
 start_process() {
     if [ -e "$PID_FILE" ]; then
-        echo "$PROCESS_NAME is already running. PID: $(cat $PID_FILE)"
+        echo "$manage_my_process is already running. PID: $(cat $PID_FILE)"
     else
         ./manage_my_process &
         echo $! > "$PID_FILE"
-        echo "$PROCESS_NAME started"
+        echo "$manage_my_process started"
     fi
 }
 
@@ -18,16 +18,16 @@ stop_process() {
     if [ -e "$PID_FILE" ]; then
         kill -TERM $(cat $PID_FILE)
         rm "$PID_FILE"
-        echo "$PROCESS_NAME stopped"
+        echo "$manage_my_process stopped"
     else
-        echo "$PROCESS_NAME is not running"
+        echo "$manage_my_process is not running"
     fi
 }
 
 restart_process() {
     stop_process
     start_process
-    echo "$PROCESS_NAME restarted"
+    echo "$manage_my_process restarted"
 }
 
 case "$1" in
@@ -41,9 +41,6 @@ case "$1" in
         restart_process
         ;;
     *)
-        echo "Usage: $0 {start|stop|restart}"
-        exit 1
+        echo "Usage:manage_my_process {start|stop|restart}"
         ;;
 esac
-
-exit 0
