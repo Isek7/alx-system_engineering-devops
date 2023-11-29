@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script that displays all active IPv4 IPs on the machine it's executed on.
+
+ips=$( ifconfig | cut -d ' ' -f 10 | grep -E '1.*\..*' )
+echo "$ips"
