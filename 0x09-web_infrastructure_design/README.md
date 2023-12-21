@@ -1,6 +1,6 @@
 # Web infrastructure design
 
-Team project done during **Full Stack Software Engineering studies** at **ALX**. It aims to learn about how to design a Web Infrastructure.
+A team project done during **Full Stack Software Engineering studies** at **ALX**. It aims to learn about how to design a Web Infrastructure.
 
 ## Key concepts
 * Network basics
