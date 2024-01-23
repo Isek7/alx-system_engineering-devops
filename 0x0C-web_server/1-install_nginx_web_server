@@ -3,11 +3,10 @@
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
+sudo service nginx start
 sudo ufw 'Nginx HTTP'
-
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # testing nginx configurations
 sudo nginx -t
-
 sudo service nginx reload
