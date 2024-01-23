@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# performing a 301 moved permanently
+# Performing a 301 moved permanently
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
@@ -9,8 +9,9 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 
 string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Isek7 permanent;"
 
-sudo sed -i "s/server_name _;\$string_for_replacement/" /etc/nginx/sites-enabled/default
+# Using the variable in sed command
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-# testing nginx configurations
+# Testing Nginx configurations
 sudo nginx -t
 sudo service nginx restart
