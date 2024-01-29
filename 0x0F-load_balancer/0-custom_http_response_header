@@ -13,7 +13,7 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Isek7 permanent;"
 
 # Using the variable in sed command
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
 
 # creating a custom error page
 
@@ -25,5 +25,5 @@ sudo sed -i "serve_name _;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites
 # Testing for syntax errors
 sudo nginx -t
 
-# reastart nginx
+# Restart nginx
 sudo service nginx restart
