@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# configuring web-01 to have an HTTP response header
+# Configuring web-01 to have an HTTP response header
 
 # Updating packages
 sudo apt-get -y update
@@ -15,12 +15,11 @@ new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Isek7
 # Using the variable in sed command
 sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
 
-# creating a custom error page
-
+# Creating a custom error page
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 # Custom HTTP response header
-sudo sed -i "serve_name _;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+sudo sed -i "/server_name _;/a \\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
 
 # Testing for syntax errors
 sudo nginx -t
