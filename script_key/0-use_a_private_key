@@ -1,8 +1,0 @@
-# use ssh to connect to a server with private key ~/.ssh/school & user ubuntu
-#!/usr/bin/env bash
-
-# Specify the server IP address or hostname
-server_ip="100.26.165.62"  # Replace with your actual server IP or hostname
-
-# Use ssh with the private key (~/.ssh/school) and connect to the server as the user 'ubuntu'
-ssh -i ~/.ssh/school ubuntu@100.26.165.62
