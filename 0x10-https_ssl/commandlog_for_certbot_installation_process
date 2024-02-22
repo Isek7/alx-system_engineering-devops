@@ -5,7 +5,7 @@ sudo apt-get install certbot
 sudo service haproxy stop
 curl localhost
 sudo certbot certonly --standalone --preferred-challenges http --http-01-port 80 -d www.isek.tech //[example.com -d www.example.com]
-sudo ls /etc/letsencrypt/live/ www.isek.tech //[your_domain_name]
+sudo ls /etc/letsencrypt/live/www.isek.tech //[your_domain_name]
 sudo mkdir -p /etc/haproxy/certs
 DOMAIN='www.isek.tech' sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
 sudo chmod -R go-rwx /etc/haproxy/certs
