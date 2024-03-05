@@ -1,23 +1,19 @@
 #!/usr/bin/python3
-'''
-    this module contains the function number_of_subscribers
-'''
+"""Advanced API module using reddit api endpoint"""
 import requests
-from sys import argv
 
 
 def number_of_subscribers(subreddit):
-    '''
-        returns the number of subscribers for a given subreddit
-    '''
-    user = {'User-Agent': 'Lizzie'}
-    url = requests.get('https://www.reddit.com/r/{}/about.json'
-                       .format(subreddit), headers=user).json()
+    """Request reddit api and return subreddit count"""
+    url = "https://www.reddit.com/r/{}.json".format(subreddit)
+    headers = {"User-Agent": "Mozilla/5.0"}
+    num_subs = 0
     try:
-        return url.get('data').get('subscribers')
-    except Exception:
-        return 0
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        data = response.json()
 
-
-if __name__ == "__main__":
-    number_of_subscribers(argv[1])
+        num_subs = data["data"]["children"][1]["data"]["subreddit_subscribers"]
+        return num_subs
+    except requests.exceptions.HTTPError as error:
+        return num_subs
