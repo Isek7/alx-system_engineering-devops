@@ -1,19 +1,17 @@
 #!/usr/bin/python3
-"""Advanced API module using reddit api endpoint"""
-import requests
+"""Module for task 0"""
 
 
 def number_of_subscribers(subreddit):
-    """Request reddit api and return subreddit count"""
-    url = "https://www.reddit.com/r/{}.json".format(subreddit)
-    headers = {"User-Agent": "Mozilla/5.0"}
-    num_subs = 0
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        data = response.json()
+    """Queries the Reddit API and returns the number of subscribers
+    to the subreddit"""
+    import requests
 
-        num_subs = data["data"]["children"][1]["data"]["subreddit_subscribers"]
-        return num_subs
-    except requests.exceptions.HTTPError as error:
-        return num_subs
+    sub_info = requests.get("https://www.reddit.com/r/{}/about.json"
+                            .format(subreddit),
+                            headers={"User-Agent": "My-User-Agent"},
+                            allow_redirects=False)
+    if sub_info.status_code >= 300:
+        return 0
+
+    return sub_info.json().get("data").get("subscribers")
